@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-   const [ term, setTerm ] = useState('');
+   const [ term, setTerm ] = useState('programming');
    const [ results, setResults ] = useState([]);
 
    useEffect(() => {
@@ -18,11 +18,17 @@ const Search = () => {
          });
          setResults(data.query.search);
       }
-      // trigger search after 500ms
-      const timeOutId = setTimeout(() => {
-         term && search();
-      }, 500);
-      return () => clearTimeout(timeOutId);
+      // invoke search() when component first renders, avoiding setTimeout and clearTimeout until the first re-render
+      if(term && !results.length) {
+         search();
+      }
+      else {
+         // trigger search after 500ms
+         const timeOutId = setTimeout(() => {
+            term && search();
+         }, 500);
+         return () => clearTimeout(timeOutId);
+      }
    }, [term]);
    const renderedResults = results.map(result => {
       return (
