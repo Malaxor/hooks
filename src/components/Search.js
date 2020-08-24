@@ -18,9 +18,11 @@ const Search = () => {
          });
          setResults(data.query.search);
       }
-      setTimeout(() => {
+      // trigger search after 500ms
+      const timeOutId = setTimeout(() => {
          term && search();
-      }, 500); 
+      }, 500);
+      return () => clearTimeout(timeOutId);
    }, [term]);
    const renderedResults = results.map(result => {
       return (
