@@ -27,7 +27,10 @@ const Search = () => {
                <div className='header'>
                   {result.title}
                </div>
-               {result.snippet}
+               {/* result.snippet returns and HTML string
+                 dangerouslySetInnerHTML prop, with __html object, turns the third party string (potentially harmful) into HTML
+               */}
+               <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
             </div>
          </div>
       )
