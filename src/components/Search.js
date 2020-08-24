@@ -18,7 +18,9 @@ const Search = () => {
          });
          setResults(data.query.search);
       }
-      term && search();
+      setTimeout(() => {
+         term && search();
+      }, 500); 
    }, [term]);
    const renderedResults = results.map(result => {
       return (
