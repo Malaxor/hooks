@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Search = () => {
-   const [ term, setTerm ] = useState('programming');
+   const [ term, setTerm ] = useState('music');
    const [ results, setResults ] = useState([]);
 
    useEffect(() => {
@@ -18,16 +18,16 @@ const Search = () => {
          });
          setResults(data.query.search);
       }
-      // invoke search() when component first renders, avoiding setTimeout and clearTimeout until the first re-render
+      // invoke search() when component first renders with preset term, avoiding setTimeout and clearTimeout until the first re-render
       if(term && !results.length) {
          search();
       }
       else {
-         // trigger search after 500ms
+         // trigger search after 500ms (throttle API requests)
          const timeOutId = setTimeout(() => {
             term && search();
          }, 500);
-         return () => clearTimeout(timeOutId);
+         return () => clearTimeout(timeOutId); // when this function is inoked, it resets setTimeout
       }
    }, [term]);
    const renderedResults = results.map(result => {
@@ -46,7 +46,7 @@ const Search = () => {
                   {result.title}
                </div>
                {/* result.snippet returns and HTML string
-                 dangerouslySetInnerHTML prop, with __html object, turns the third party string (potentially harmful) into HTML
+                 dangerouslySetInnerHTML prop, with __html object, turns the third party string (potentially harmful) into readable HTML
                */}
                <span dangerouslySetInnerHTML={{ __html: result.snippet }}></span>
             </div>
