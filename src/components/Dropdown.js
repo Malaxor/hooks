@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
    const [ open, setOpen ] = useState(false);
+   const ref = useRef();
    
+   useEffect(() => {
+      const onBodyClick = event => {
+         // if the click event is on an element inside the Dropdown component
+         if(ref.current.contains(event.target)) {
+            return;
+         }
+         // run only when the click event is outside the ref.current
+         setOpen(false);
+      }
+      document.body.addEventListener('click', onBodyClick);
+      return () => document.body.removeEventListener('click', onBodyClick);
+   }, []); // useEffect runs only once, immediately after first render
    const renderedOptions = options.map(option => {
-      
-      if(selected.value === option.value) {
+      if(selected === option) {
          return null;
       }
       return (
@@ -19,7 +31,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
       )
    });
    return (
-      <div className='ui form'>
+      <div ref={ref} className='ui form'>
          <div className='field'>
             <label className='label'>
                Select a Color
