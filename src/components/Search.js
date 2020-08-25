@@ -18,7 +18,7 @@ const Search = () => {
          });
          setResults(data.query.search);
       }
-      // invoke search() when component first renders with preset term, avoiding setTimeout and clearTimeout until the first re-render
+      // invoke search() when component first renders with a preset term, avoiding setTimeout and clearTimeout until the first re-render
       if(term && !results.length) {
          search();
       }
