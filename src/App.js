@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Route from './components/Route';
+import { Route } from './components/nav/Route';
 import Header from './components/Header';
 import Accordion from './components/Accordion';
 import Search from './components/Search';

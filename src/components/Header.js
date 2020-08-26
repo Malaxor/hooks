@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from './Link';
+import { Link } from './nav/Link';
 
 const Header = () => (
    <div className="ui secondary pointing menu">

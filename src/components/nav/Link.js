@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Link = ({ href, className, children }) => {
+export const Link = ({ href, className, children }) => {
    const onClick = event => {
       if(event.metaKey || event.ctrlKey) {
          return;
@@ -17,4 +17,3 @@ const Link = ({ href, className, children }) => {
       </a>
    )   
 }
-export default Link;
