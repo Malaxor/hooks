@@ -35,8 +35,6 @@ const options = [
 ];
 
 export default () => {
-   const [ selected, setSelected ] = useState(options[0]);
-
    return (
       <div>
          {/* <Accordion items={items} /> */}
