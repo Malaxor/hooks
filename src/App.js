@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Route from './components/Route';
+import Header from './components/Header';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
@@ -40,6 +41,7 @@ export default () => {
 
    return (
       <div>
+         <Header />
          <Route path="/">
             <Accordion items={items} />
          </Route>
